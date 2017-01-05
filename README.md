@@ -4,18 +4,18 @@ Qlik Sense NodeJs module to authenticate with Slack in Qlik Sense.
 
 ## Setup step by step
 ---
-### Microsoft Office 365 Application
-1. Go to Microsoft Application Registration Portal, Login and Create a new Application https://apps.dev.microsoft.com/. You'll be given an Application Id. This will be your **client_id**. Copy it somewhere for later.
+### Slack App registration
+1. Go to Slack API Portal and Create a new Application https://api.slack.com/apps.
 
-![](https://github.com/mjromper/qlik-auth-office365/raw/master/docs/images/createapp.png)
-2. Generate a new password for this application. This will be the **client_secret**. Copy it somewhere when presented as you won't be able to see it again.
+![](https://github.com/mjromper/qlik-auth-slack/raw/master/docs/images/createapp.png)
+2. You'll be given an Client Id and Client Secret. This will be your **client_id** and **client_secret** Copy these values somewhere for later.
 
 ![](https://github.com/mjromper/qlik-auth-office365/raw/master/docs/images/generatepassword.png)
-3. Add "Web" as the Platform and set the redirect URI. Select a port number at your choice (different from the ones already in used by Qlik Sense). **https://your_sense_server_host:5555/oauth2callback**
+3. Click on "Oauth and Permissions" and set the redirect URI. Select a port number at your choice (different from the ones already in used by Qlik Sense). **https://your_sense_server_host:8085/oauth2callback**
 
-![](https://github.com/mjromper/qlik-auth-office365/raw/master/docs/images/webapplicationredirect.png)
+![](https://github.com/mjromper/qlik-auth-slack/raw/master/docs/images/webapplicationredirect.png)
 4. Save your changes.
-![](https://github.com/mjromper/qlik-auth-office365/raw/master/docs/images/saveconfig.png)
+
 
 ### Installation of this module
 
