@@ -80,9 +80,9 @@ Script=Node\slack-auth\service.js
 [slack-auth.parameters]
 user_directory=
 auth_port=
-slack_team=
 client_id=
 client_secret=
+slack_team=
 "@
 	Add-Content "$config\services.conf" $settings
 }

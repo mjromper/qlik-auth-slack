@@ -24,6 +24,9 @@ arg.forEach( function(a) {
       case "auth_port":
         settings.port = key[1];
         break;
+      case "slack_team":
+        settings.slack_team = key[1];
+        break;
   }
 } );
 

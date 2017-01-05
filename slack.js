@@ -23,8 +23,6 @@ function getTokenFromCode( code, state, reqUrl, settings, callback ) {
         return;
     }
 
-    var redirectUri = reqUrl + endpoint.redirectUriPath;
-
     var OAuth2 = OAuth.OAuth2;
     var oauth2 = new OAuth2(
         settings.client_id,
@@ -37,7 +35,7 @@ function getTokenFromCode( code, state, reqUrl, settings, callback ) {
     oauth2.getOAuthAccessToken(
         code,
         {
-            redirect_uri: redirectUri
+            redirect_uri: reqUrl + endpoint.redirectUriPath
         },
         function (e, accessToken) {
             callback(e, accessToken);
@@ -49,13 +47,17 @@ function getTokenFromCode( code, state, reqUrl, settings, callback ) {
  * Gets Slack login url
  */
 function getAuthUrl( reqUrl, settings ) {
-    var redirectUri = reqUrl + endpoint.redirectUriPath;
-    return endpoint.authority + endpoint.authorize_endpoint +
+    var url = endpoint.authority + endpoint.authorize_endpoint +
         "?client_id=" + settings.client_id +
-        "&redirect_uri=" + redirectUri +
+        "&redirect_uri=" + reqUrl + endpoint.redirectUriPath +
         "&scope=" + endpoint.scope +
-        //"&team=" + settings.team +
         "&state=" + endpoint.state;
+
+    if ( settings.slack_team ) {
+        url += "&team=" + settings.slack_team;
+    }
+
+    return url;
 }
 
 /**

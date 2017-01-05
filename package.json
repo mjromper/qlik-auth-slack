@@ -1,7 +1,7 @@
 {
-    "name": "qlik-auth-office365",
+    "name": "qlik-auth-slack",
     "version": "0.1.0",
-    "description": "A module for simplyfing OAuth2 authentication with Office 365 for the Qlik Sense",
+    "description": "A module for simplyfing OAuth2 authentication with Slack for the Qlik Sense",
     "main": "service.js",
     "author": "Manuel Romero",
     "license": "MIT",
@@ -14,15 +14,15 @@
     "keywords": [
         "qlik",
         "sense",
-        "office365",
+        "slack",
         "oauth2"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/mjromper/qlik-auth-office365"
+        "url": "https://github.com/mjromper/qlik-auth-slack"
     },
-    "homepage": "https://github.com/mjromper/qlik-auth-office365",
+    "homepage": "https://github.com/mjromper/qlik-auth-slack",
     "bugs": {
-        "url": "https://github.com/mjromper/qlik-auth-office365/issues"
+        "url": "https://github.com/mjromper/qlik-auth-slack/issues"
     }
 }
