@@ -10,7 +10,7 @@ Qlik Sense NodeJs module to authenticate with Slack in Qlik Sense.
 ![](https://github.com/mjromper/qlik-auth-slack/raw/master/docs/images/createapp.png)
 2. You'll be given an Client Id and Client Secret. This will be your **client_id** and **client_secret** Copy these values somewhere for later.
 
-![](https://github.com/mjromper/qlik-auth-office365/raw/master/docs/images/generatepassword.png)
+![](https://github.com/mjromper/qlik-auth-slack/raw/master/docs/images/generatepassword.png)
 3. Click on "Oauth and Permissions" and set the redirect URI. Select a port number at your choice (different from the ones already in used by Qlik Sense). **https://your_sense_server_host:8085/oauth2callback**
 
 ![](https://github.com/mjromper/qlik-auth-slack/raw/master/docs/images/webapplicationredirect.png)
@@ -37,8 +37,8 @@ This will download and execute the setup script.
 When the downloading and installation of the modules including their dependencies are finished you will be prompted for some configuration options.
 
 ```
-Enter name of user directory [OFFICE365]:
-Enter port [5555]:
+Enter name of user directory [SLACK]:
+Enter port [8085]:
 Application ID []: enter your **client_id** value
 Client Secret []: enter your **client_secret** value
 Slack Team (Optional) []:
