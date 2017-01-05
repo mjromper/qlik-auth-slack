@@ -29,7 +29,7 @@ Qlik Sense NodeJs module to authenticate with Slack in Qlik Sense.
 * Enter the below command exactly as it is (including parentheses):
 
 ```powershell
-    (Invoke-WebRequest "https://raw.githubusercontent.com/mjromper/qlik-auth-office365/master/setup.ps1" -OutFile setup.ps1) | .\setup.ps1
+    (Invoke-WebRequest "https://raw.githubusercontent.com/mjromper/qlik-auth-slack/master/setup.ps1" -OutFile setup.ps1) | .\setup.ps1
 ```
 
 This will download and execute the setup script.
