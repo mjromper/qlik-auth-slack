@@ -48,7 +48,7 @@ app.get('/oauth2callback', function ( req, res ) {
                 res.send( { "error": e } );
                 return;
             } else {
-                slack.getUser( accessToken, function( e1, user ) {
+                slack.getUser( accessToken, function( e1, resUser ) {
 
                     if ( e1 ) {
                         res.send( { "error": e1 } );
@@ -57,7 +57,7 @@ app.get('/oauth2callback', function ( req, res ) {
 
                     var ticketReq = {
                         'UserDirectory': settings.directory,
-                        'UserId': user.profile.email,
+                        'UserId': resUser.user.name,
                         'Attributes': []
                     };
 
@@ -82,8 +82,8 @@ app.get('/oauth2callback', function ( req, res ) {
 });
 
 var options = {
-    key: fs.readFileSync( "C:\\ProgramData\\Qlik\\Sense\\Repository\\Exported Certificates\\.Local Certificates\\client_key.pem" ),
-    cert: fs.readFileSync( "C:\\ProgramData\\Qlik\\Sense\\Repository\\Exported Certificates\\.Local Certificates\\client.pem" ),
+   pfx: fs.readFileSync("C:\\Users\\Manuel\\Desktop\\rfn-public-NEW.pfx"),
+   passphrase: 'qlik123'
 };
 
 //Server application

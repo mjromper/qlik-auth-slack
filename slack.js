@@ -5,7 +5,7 @@ var endpoint = {
     "authority": "https://slack.com",
     "authorize_endpoint": "/oauth/authorize",
     "token_endpoint": "/api/oauth.access",
-    "scope": "users.profile:read groups:read team:read",
+    "scope": "identity.basic identity.email identity.team",
     "state": "qlikslack1234abcd",
     "redirectUriPath": "/oauth2callback",
     "slackApiUri": "slack.com"
@@ -23,6 +23,8 @@ function getTokenFromCode( code, state, reqUrl, settings, callback ) {
         return;
     }
 
+    var redirectUri = reqUrl + endpoint.redirectUriPath;
+
     var OAuth2 = OAuth.OAuth2;
     var oauth2 = new OAuth2(
         settings.client_id,
@@ -35,7 +37,7 @@ function getTokenFromCode( code, state, reqUrl, settings, callback ) {
     oauth2.getOAuthAccessToken(
         code,
         {
-            redirect_uri: reqUrl + endpoint.redirectUriPath
+            redirect_uri: redirectUri
         },
         function (e, accessToken) {
             callback(e, accessToken);
@@ -47,14 +49,15 @@ function getTokenFromCode( code, state, reqUrl, settings, callback ) {
  * Gets Slack login url
  */
 function getAuthUrl( reqUrl, settings ) {
+    var redirectUri = reqUrl + endpoint.redirectUriPath;
     var url = endpoint.authority + endpoint.authorize_endpoint +
         "?client_id=" + settings.client_id +
-        "&redirect_uri=" + reqUrl + endpoint.redirectUriPath +
+        "&redirect_uri=" + redirectUri +
         "&scope=" + endpoint.scope +
         "&state=" + endpoint.state;
 
-    if ( settings.slack_team ) {
-        url += "&team=" + settings.slack_team;
+    if (settings.slack_team) {
+        url = url + "&team=" + settings.slack_team;
     }
 
     return url;
@@ -74,9 +77,18 @@ function getUserGroups( accessToken, callback ) {
 
 function getUser( accessToken, callback ) {
     _request( {
-        path: "/api/users.profile.get?token="+accessToken+"&pretty=1",
+        path: "/api/users.identity?token="+accessToken+"&pretty=1",
         method: "GET"
-    }, callback );
+    }, function(e, response) {
+        if ( e ) {
+            callback(e, null);
+            return;
+        }
+        _request( {
+            path: "/api/users.info?user="+response.user.id+"&token="+accessToken+"&pretty=1",
+            method: "GET"
+        }, callback );
+    } );
 }
 
 /**
